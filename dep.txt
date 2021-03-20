@@ -1,0 +1,8 @@
+implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"  1.11.0
+
+
+implementation "com.squareup.retrofit2:retrofit:$version_retrofit" 2.9.0
+implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
