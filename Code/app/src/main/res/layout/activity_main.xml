@@ -5,59 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fentWhite"
+    android:padding="10dp"
     tools:context=".activity.MainActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvProfileSection"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="45dp"
         android:layout_marginTop="24dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/search_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <include
-            android:id="@+id/profile_section_layout"
-            layout="@layout/profile_section_layout" />
+        <EditText
+            android:id="@+id/etUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/search_back2"
+            android:textColor="@color/purple_200"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="User Name" />
 
-    </androidx.cardview.widget.CardView>
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/etUserName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etUserName"
+            app:srcCompat="@drawable/ic_search" />
 
-    <EditText
-        android:id="@+id/etUserName"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/search_back"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="User Name" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/ivSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/etUserName"
-        app:layout_constraintEnd_toEndOf="@+id/etUserName"
-        app:layout_constraintTop_toTopOf="@+id/etUserName"
-        app:srcCompat="@drawable/ic_search" />
 
     <ProgressBar
         android:id="@+id/pbLoader"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/etUserName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cvProfileSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/profileSectionLayout"
+            layout="@layout/profile_section_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

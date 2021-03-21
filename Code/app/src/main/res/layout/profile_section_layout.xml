@@ -10,9 +10,10 @@
 
     <ImageView
         android:id="@+id/ivUserImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:contentDescription="@string/userprofile"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -22,31 +23,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        tools:text="Abhijeet Khamkar"
+        android:fontFamily="sans-serif-black"
+        android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivUserImage" />
-
-    <TextView
-        android:id="@+id/tvUserBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:maxLines="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName"
-        tools:text="@tools:sample/lorem/random" />
+        app:layout_constraintTop_toBottomOf="@+id/ivUserImage"
+        tools:text="Abhijeet Khamkar" />
 
     <LinearLayout
+        android:id="@+id/locrepofollo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/ivUserImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivUserImage"
-        app:layout_constraintTop_toTopOf="@+id/ivUserImage">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:textSize="16sp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="20sp"
                 tools:text="Sakori Pune Maharashtra India" />
         </LinearLayout>
 
@@ -84,7 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:textSize="16sp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="20sp"
                 tools:text="3" />
         </LinearLayout>
 
@@ -104,11 +99,36 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:textSize="16sp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="20sp"
                 tools:text="7" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvUserBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:maxLines="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locrepofollo"
+        tools:text="@tools:sample/lorem/random" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVisitGitHubPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/visit_github_page_btn_back"
+        android:text="Github Page"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserBio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,74 +1,100 @@
 package com.abhijeet_exploring_kotlin_api.githubprofile.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import coil.load
+import com.abhijeet_exploring_kotlin_api.githubprofile.R
 import com.abhijeet_exploring_kotlin_api.githubprofile.databinding.ActivityMainBinding
 import com.abhijeet_exploring_kotlin_api.githubprofile.model.UserModel
 import com.abhijeet_exploring_kotlin_api.githubprofile.service.createGitHubService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityMainBinding
-    val gitHubService by lazy { createGitHubService() }
+    lateinit var binding: ActivityMainBinding
+    private val gitHubService by lazy { createGitHubService() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.ivSearch.setOnClickListener {
-            GlobalScope.launch{
-                val userName = binding.etUserName.text.toString()
-                if(userName.isNotEmpty())
-                    loadUser(userName)
-                else
-                    toast("Give me the UserName")
-            }
-        }
+        initView()
 
     }
 
-    suspend fun loadUser(username : String){
+    fun initView() {
+        binding.etUserName.showKeyboard()
+        binding.ivSearch.setOnClickListener {
+            val username = binding.etUserName.text.toString()
+            lifecycleScope.launch { loadUser(username) }
+        }
+    }
+
+    private suspend fun loadUser(userName : String) {
+        binding.etUserName.hideKeyboard()
         binding.pbLoader.show()
-        binding.cvProfileSection.show()
         try {
-            val user = gitHubService.getUser(username)
-            showUserOnUi(user)
+            val user = gitHubService.getUser(userName)
+            showUserOnUi(user, userName)
         }catch (e : Exception){
-            toast(e.message ?: "Some error")  //if e.message is null then pass "Some Error" as error message.
+            toast(e.message ?: "Some Error")
         }finally {
             binding.pbLoader.hide()
-            binding.cvProfileSection.hide()
         }
 
     }
 
-    private fun showUserOnUi(user: UserModel) {
+    private fun showUserOnUi(user: UserModel, userLogIn : String) {
+
+        binding.cvProfileSection.show()
+
+
+
+
         with(binding.profileSectionLayout){
-            tvUserName.text = user.name
-            tvUserBio.text = user.bio
-            tvUserLocation.text = user.location
+            tvUserName.text = user.name ?: "${userLogIn}"
+            tvUserBio.text = user.bio ?: "BIO is not added by user"
+            tvUserLocation.text = user.location ?: "Location not found"
             tvUserFollowersCount.text = "${user.followersCount}"
             tvUserRepositoryCount.text = "${user.RepositoryCount}"
 
             ivUserImage.load(user.imageUrl)
+
         }
-    }
 
-    private fun toast(msg : String) {
-        Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
     }
-
+    private fun toast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    }
     private fun View.show() {
         visibility = View.VISIBLE
     }
-    fun View.hide() {
+    private fun View.hide() {
         visibility = View.GONE
     }
+
+    private fun View.showKeyboard() {
+        binding.etUserName.requestFocus()
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(binding.etUserName, InputMethodManager.SHOW_FORCED)
+    }
+    private fun View.hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(this.windowToken, 0)
+    }
+
 }
+
+
