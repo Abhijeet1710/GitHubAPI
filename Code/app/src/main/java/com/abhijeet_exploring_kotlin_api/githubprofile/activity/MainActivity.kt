@@ -1,6 +1,8 @@
 package com.abhijeet_exploring_kotlin_api.githubprofile.activity
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,10 +17,7 @@ import com.abhijeet_exploring_kotlin_api.githubprofile.R
 import com.abhijeet_exploring_kotlin_api.githubprofile.databinding.ActivityMainBinding
 import com.abhijeet_exploring_kotlin_api.githubprofile.model.UserModel
 import com.abhijeet_exploring_kotlin_api.githubprofile.service.createGitHubService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         binding.pbLoader.show()
         try {
             val user = gitHubService.getUser(userName)
+//            withContext(Dispatchers.Main){showUserOnUi(user, userName)}
             showUserOnUi(user, userName)
         }catch (e : Exception){
             toast(e.message ?: "Some Error")
@@ -60,9 +60,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.cvProfileSection.show()
 
-
-
-
         with(binding.profileSectionLayout){
             tvUserName.text = user.name ?: "${userLogIn}"
             tvUserBio.text = user.bio ?: "BIO is not added by user"
@@ -72,9 +69,21 @@ class MainActivity : AppCompatActivity() {
 
             ivUserImage.load(user.imageUrl)
 
+            btnVisitGitHubPage.setOnClickListener {
+                val link = user.htmlPageUrl
+                openGitHubPage(link);
+            }
+
         }
 
     }
+
+    private fun openGitHubPage(link: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(link)
+        startActivity(intent)
+    }
+
     private fun toast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }

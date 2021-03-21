@@ -44,12 +44,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_location" />
+                android:src="@drawable/ic_location"
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:id="@+id/tvUserLocation"
@@ -65,12 +67,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_followers" />
+                android:src="@drawable/ic_followers"
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:id="@+id/tvUserFollowersCount"
@@ -91,7 +95,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_repo" />
+                android:src="@drawable/ic_repo"
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:id="@+id/tvUserRepositoryCount"
@@ -124,7 +129,7 @@
         android:background="@drawable/visit_github_page_btn_back"
         android:text="Github Page"
         android:textAllCaps="false"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

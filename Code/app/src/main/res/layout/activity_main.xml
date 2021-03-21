@@ -66,12 +66,13 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/pbLoader"
         tools:visibility="visible">
 
         <include
             android:id="@+id/profileSectionLayout"
-            layout="@layout/profile_section_layout" />
+            layout="@layout/profile_section_layout"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
