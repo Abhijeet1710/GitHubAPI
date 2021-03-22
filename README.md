@@ -19,7 +19,8 @@
 1. Kotlin
 2. Coroutines
 3. Retrofit
-4.  Moshi
+4. Moshi
+5. GitHub API
 
 # Give it a Try
 Download and Use [GitHub Profile.apk](https://github.com/Abhijeet1710/GitHubAPI/releases/tag/v1.0).
