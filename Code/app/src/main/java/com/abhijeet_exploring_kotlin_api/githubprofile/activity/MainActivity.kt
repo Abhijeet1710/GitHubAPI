@@ -17,6 +17,7 @@ import com.abhijeet_exploring_kotlin_api.githubprofile.R
 import com.abhijeet_exploring_kotlin_api.githubprofile.databinding.ActivityMainBinding
 import com.abhijeet_exploring_kotlin_api.githubprofile.model.UserModel
 import com.abhijeet_exploring_kotlin_api.githubprofile.service.createGitHubService
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,29 +34,31 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun initView() {
-//        binding.etUserName.showKeyboard()
+    private fun initView() {
         binding.ivSearch.setOnClickListener {
+            binding.pbLoader.show()
             val username = binding.etUserName.text.toString()
             if(username.isNotEmpty()){
                 binding.etUserName.hideKeyboard()
-                binding.pbLoader.show()
                 lifecycleScope.launch { loadUser(username) }
-            }else toast("Give me the User Name")
+            }else{
+                binding.pbLoader.hide()
+                toast("Give valid User Name")
+            }
         }
 
-        binding.ivClear.setOnClickListener {
-            binding.etUserName.text.clear()
-        }
+        binding.ivClear.setOnClickListener { binding.etUserName.text.clear() }
     }
 
     private suspend fun loadUser(userName : String) {
         try {
             val user = gitHubService.getUser(userName)
-//            withContext(Dispatchers.Main){showUserOnUi(user, userName)}
             showUserOnUi(user, userName)
         }catch (e : Exception){
-            toast(e.message ?: "Some Error")
+            binding.pbLoader.hide()
+            val msg = if(e.message.toString().contains("404")) { "No such User found" }
+                      else "Check your Internet Connection"
+            toast(msg)
         }
 
     }
