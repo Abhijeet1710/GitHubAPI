@@ -23,4 +23,4 @@
 5. GitHub API
 
 # Give it a Try
-Download and Use [GitHub Profile.apk](https://github.com/Abhijeet1710/GitHubAPI/releases/tag/v1.0).
+Download and Use [GitHub Profile.apk](https://github.com/Abhijeet1710/GitHubAPI/releases).
