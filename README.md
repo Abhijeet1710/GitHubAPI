@@ -8,8 +8,10 @@
 ** Use to search users on GitHub by their user name. **
 
 ## Features 
-- share user
-- direct link to land on users Github page
+- Functionality to share searched user
+- Direct link to land on searched users Github page
+- Beautiful User interface
+- Great User Experience
 
 # Build With
 1. Kotlin
