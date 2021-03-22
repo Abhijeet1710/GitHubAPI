@@ -18,6 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ImageView
+        android:id="@+id/ivShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/shareBtn"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivUserImage"
+        android:src="@drawable/ic_share" />
+
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
@@ -39,6 +49,7 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:background="@color/purple_200"
+        android:alpha="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserName"/>
@@ -72,7 +83,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="sans-serif-smallcaps"
                 android:textSize="20sp"
-                tools:text="Sakori Pune Maharashtra India" />
+                tools:text="At post Sakori belhe 412-410 Pune Maharashtra India " />
         </LinearLayout>
 
         <LinearLayout
@@ -148,16 +159,18 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnVisitGitHubPage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/visit_github_page_btn_back"
+        android:drawablePadding="5dp"
         android:text="Github Page"
+        android:gravity="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserBio" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUserBio"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

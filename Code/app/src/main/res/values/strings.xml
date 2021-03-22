@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GitHub Profile</string>
     <string name="userprofile">UserProfile</string>
+    <string name="shareBtn">shareBtn</string>
 </resources>

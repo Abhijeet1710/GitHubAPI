@@ -78,8 +78,26 @@ class MainActivity : AppCompatActivity() {
                 openGitHubPage(link);
             }
 
+            ivShare.setOnClickListener {
+                var uName =  user.name ?: userLogIn
+                uName = "User : $uName"
+                val htmlLink = user.htmlPageUrl
+                shareUser(uName, htmlLink)
+            }
+
         }
 
+    }
+
+    private fun shareUser(uName: String, htmlLink: String) {
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TITLE, "GitHub Profile \n $uName")
+            putExtra(Intent.EXTRA_TEXT,"Visit : $htmlLink")
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(intent, "Share")
+        startActivity(shareIntent)
     }
 
     private fun openGitHubPage(link: String) {
@@ -97,7 +115,6 @@ class MainActivity : AppCompatActivity() {
     private fun View.hide() {
         visibility = View.GONE
     }
-
     private fun View.showKeyboard() {
         binding.etUserName.requestFocus()
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
