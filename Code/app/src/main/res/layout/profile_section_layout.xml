@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-black"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,13 +33,24 @@
         tools:text="Abhijeet Khamkar" />
 
     <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:background="@color/purple_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName"/>
+
+    <LinearLayout
         android:id="@+id/locrepofollo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+        app:layout_constraintTop_toBottomOf="@+id/line1">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -95,7 +106,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_repo"
+                android:src="@drawable/ic_repositorys"
                 android:layout_marginRight="5dp"/>
 
             <TextView
@@ -112,13 +123,26 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvUserBio"
+        android:id="@+id/tvBio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:maxLines="5"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="BIO"
+        android:textColor="@color/purple_200"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locrepofollo"
+        app:layout_constraintTop_toBottomOf="@+id/locrepofollo" />
+
+    <TextView
+        android:id="@+id/tvUserBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:maxLines="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBio"
         tools:text="@tools:sample/lorem/random" />
 
     <androidx.appcompat.widget.AppCompatButton

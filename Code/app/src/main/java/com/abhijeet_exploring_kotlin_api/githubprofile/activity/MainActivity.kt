@@ -34,38 +34,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initView() {
-        binding.etUserName.showKeyboard()
+//        binding.etUserName.showKeyboard()
         binding.ivSearch.setOnClickListener {
             val username = binding.etUserName.text.toString()
-            lifecycleScope.launch { loadUser(username) }
+            if(username.isNotEmpty()){
+                binding.etUserName.hideKeyboard()
+                binding.pbLoader.show()
+                lifecycleScope.launch { loadUser(username) }
+            }else toast("Give me the User Name")
+        }
+
+        binding.ivClear.setOnClickListener {
+            binding.etUserName.text.clear()
         }
     }
 
     private suspend fun loadUser(userName : String) {
-        binding.etUserName.hideKeyboard()
-        binding.pbLoader.show()
         try {
             val user = gitHubService.getUser(userName)
 //            withContext(Dispatchers.Main){showUserOnUi(user, userName)}
             showUserOnUi(user, userName)
         }catch (e : Exception){
             toast(e.message ?: "Some Error")
-        }finally {
-            binding.pbLoader.hide()
         }
 
     }
 
     private fun showUserOnUi(user: UserModel, userLogIn : String) {
-
+        binding.pbLoader.hide()
         binding.cvProfileSection.show()
 
         with(binding.profileSectionLayout){
             tvUserName.text = user.name ?: "${userLogIn}"
-            tvUserBio.text = user.bio ?: "BIO is not added by user"
-            tvUserLocation.text = user.location ?: "Location not found"
-            tvUserFollowersCount.text = "${user.followersCount}"
-            tvUserRepositoryCount.text = "${user.RepositoryCount}"
+            tvUserBio.text = user.bio ?: "Nothing to Show !!"
+            tvUserLocation.text = user.location ?: "Location not added"
+            tvUserFollowersCount.text = "${user.followersCount} Followers"
+            tvUserRepositoryCount.text = "${user.RepositoryCount} Public Repos."
 
             ivUserImage.load(user.imageUrl)
 

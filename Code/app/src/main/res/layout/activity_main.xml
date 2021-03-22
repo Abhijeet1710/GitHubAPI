@@ -25,19 +25,31 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/search_back2"
+            android:hint="GitHub User Name"
             android:textColor="@color/purple_200"
+            android:textColorHint="@color/dark_white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            app:layout_constraintEnd_toStartOf="@+id/ivClear"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="User Name" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:rotation="45"
+            app:layout_constraintBottom_toBottomOf="@+id/etUserName"
+            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            app:layout_constraintTop_toTopOf="@+id/etUserName"
+            app:srcCompat="@drawable/ic_clear" />
 
         <ImageView
             android:id="@+id/ivSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/etUserName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/etUserName"
