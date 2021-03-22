@@ -5,9 +5,11 @@
 
 # About
 📒 Github Profile is a complete 💎Kotlin-Android 📱 application built to demonstrate the use of Modern development tools with best practices implementation🦸.
-** Use to search users on GitHub by their user name. **
 
-## Features 
+# Working
+**Use to search users on GitHub by their user name.**
+
+# Features 
 - Functionality to share searched user
 - Direct link to land on searched users Github page
 - Beautiful User interface
